@@ -28,7 +28,7 @@ class Detector:
         self.classesList = []  # to store the classes
         self.colorList = []  # to store the colors
 
-        # configuring the network
+        # configuring the deep learning network
         self.net = cv2.dnn_DetectionModel(self.model_path, self.config_path)
         self.net.setInputSize(1000, 900)
         self.net.setInputScale(1.0 / 127.5)
