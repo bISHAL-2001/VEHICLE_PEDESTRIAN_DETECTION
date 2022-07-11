@@ -3,21 +3,6 @@ import time
 import cv2
 import numpy as np
 
-
-# vid = cv2.VideoCapture(0)
-
-# while True:
-
-#     ret, frame = vid.read()
-
-#     cv2.imshow('frame', frame)
-#     if cv2.waitKey(1) == 27:
-#         break
-
-# vid.release()
-# cv2.destroyAllWindows()
-
-
 class Detector:
     def __init__(self, video_path, config_path, model_path, classes_path):
         self.video_path = video_path  # sets the path for the video or the camera access
