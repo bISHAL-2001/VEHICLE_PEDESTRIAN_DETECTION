@@ -4,7 +4,7 @@ import os
 
 def main():
     # For object detection and object tracking in either video or live footage
-    video_path = "Test_Video1.mp4"
+    video_path = "Test_Video2.avi"
 
     # For Model Configuration
     config_path = os.path.join("model_data", "config.pbtxt")
