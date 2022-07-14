@@ -32,7 +32,7 @@ class Detector:
         self.colorList = np.random.uniform(low=0, high=255, size=(len(self.classesList), 3))
         # print(self.classesList)
 
-    def onVideo(self):
+    def onVideo(self, capture_duration):
         cap = cv2.VideoCapture(self.video_path)  # To the read the video or the live footage
 
         if not cap.isOpened():
@@ -41,11 +41,11 @@ class Detector:
 
         (success, image) = cap.read()
 
-        # total_objects_identified = 0
-
         startTime = 0
-        while success:
-
+        time_elapsed = 0
+        while success and time_elapsed <= capture_duration:
+            print(f"{time_elapsed}, {capture_duration}")
+            time_elapsed = int(cap.get(cv2.CAP_PROP_POS_FRAMES) / int(cap.get(cv2.CAP_PROP_FPS)))
             # for the fps detection
             #
             currentTime = time.time()
@@ -112,7 +112,6 @@ class Detector:
             key = cv2.waitKey(1) & 0xff
             if key == ord('q') or key == 27 or cv2.getWindowProperty('Result', cv2.WND_PROP_VISIBLE) < 1:
                 break
-            (success, image) = cap.read()
-        # print(f"Total objects identified = {total_objects_identified}")
+            (success, image) = cap.read()  # for successive frame captures
 
         cv2.destroyAllWindows()
