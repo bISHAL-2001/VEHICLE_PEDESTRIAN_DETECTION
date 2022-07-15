@@ -2,9 +2,9 @@ from Detect import *
 import os
 import cv2
 import tkinter as tk
-from tkinter import messagebox
-from tkinter import ttk
-from tkinter import filedialog as fd
+from tkinter import messagebox  # provides a template base class as well as a variety of convenience methods for commonly used configurations
+from tkinter import ttk  # provides access to the Tk themed widget set
+from tkinter import filedialog as fd  # provides classes and factory functions for creating file/directory selection windows  # provides a template base class as well as a variety of convenience methods for commonly used configurations
 
 
 def message_box(time_set):
