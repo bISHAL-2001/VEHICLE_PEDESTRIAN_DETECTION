@@ -32,20 +32,21 @@ def input_window(seconds):
     root.geometry("280x110")
     root.resizable(False, False)
 
-    time_var = tk.StringVar()
-    option = ["secs", "mins", "hrs"]
-    time_label = tk.Label(root, text='TIME', font=('', 12, 'bold'))
+    time_var = tk.StringVar()  # captures and stores the input from the user via the inout window
+    option = ["secs", "mins", "hrs"]  # Options for the drop-down list
+    time_label = tk.Label(root, text='TIME', font=('', 12, 'bold'))  # Label for the entry widget
 
+    # For proper timespan of the video message
     time_stamp: str
     if minutes and hours:
         time_stamp = f"Time of the video extends to {hours} h {minutes} m {seconds} s!"
     elif minutes:
         time_stamp = f"Time of the video extends to {minutes} m {seconds} s!"
     else:
-        time_stamp = f"Time of the video extends to {seconds} s!"
+        time_stamp = f"Time of the video extends to {seconds} secs!"
 
-    time_of_video_label = tk.Label(root, text=time_stamp, fg="#FF0000", font=("Helvetica", 10, "bold"))
-    time_entry = tk.Entry(root, textvariable=time_var, font=('calibre', 10, 'normal'))
+    time_of_video_label = tk.Label(root, text=time_stamp, fg="#FF0000", font=("Helvetica", 10, "bold"))  # Label for the timespan message
+    time_entry = tk.Entry(root, textvariable=time_var, font=('calibre', 10, 'normal'))  # Time entry widget
 
     clicked = tk.StringVar(root)
     clicked.set("unit")
