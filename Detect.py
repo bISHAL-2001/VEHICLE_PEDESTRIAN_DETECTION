@@ -16,7 +16,7 @@ class Detector:
 
         # configuring the deep learning network
         self.net = cv2.dnn_DetectionModel(self.model_path, self.config_path)
-        self.net.setInputSize(1000, 900)
+        self.net.setInputSize(600, 600)
         self.net.setInputScale(1.0 / 127.5)
         self.net.setInputMean((127.5, 127.5, 127.5))
         self.net.setInputSwapRB(True)
@@ -59,7 +59,7 @@ class Detector:
             confidences = list(np.array(confidences).reshape(1, -1)[0])
             confidences = list(map(float, confidences))
 
-            bboxIds = cv2.dnn.NMSBoxes(bboxs, confidences, score_threshold=0.5, nms_threshold=0.1)
+            bboxIds = cv2.dnn.NMSBoxes(bboxs, confidences, score_threshold=0.6, nms_threshold=1.5)
 
             if len(bboxIds) != 0:
                 for i in range(len(bboxIds)):

@@ -15,15 +15,36 @@ def message_box(time_set):
 
 
 def input_window(seconds):
+
+    temp = seconds
+    minutes: int = 0
+    hours: int = 0
+    if seconds > 60:
+        minutes = seconds // 60
+        seconds = seconds % 60
+        if minutes > 60:
+            hours = minutes // 60
+            minutes = minutes % 60
+
+    print(f"{hours}:{minutes}:{seconds}")
     root = tk.Tk()
     root.title("Time Input")
-    root.geometry("280x200")
+    root.geometry("280x110")
     root.resizable(False, False)
 
     time_var = tk.StringVar()
     option = ["secs", "mins", "hrs"]
     time_label = tk.Label(root, text='TIME', font=('', 12, 'bold'))
-    time_of_video_label = tk.Label(root, text=f"Time of the video extends to {seconds} secs!", fg="#FF0000", font=("Helvetica", 10, "bold"))
+
+    time_stamp: str
+    if minutes and hours:
+        time_stamp = f"Time of the video extends to {hours} h {minutes} m {seconds} s!"
+    elif minutes:
+        time_stamp = f"Time of the video extends to {minutes} m {seconds} s!"
+    else:
+        time_stamp = f"Time of the video extends to {seconds} s!"
+
+    time_of_video_label = tk.Label(root, text=time_stamp, fg="#FF0000", font=("Helvetica", 10, "bold"))
     time_entry = tk.Entry(root, textvariable=time_var, font=('calibre', 10, 'normal'))
 
     clicked = tk.StringVar(root)
@@ -39,6 +60,8 @@ def input_window(seconds):
 
     sub_btn = tk.Button(root, text='Submit', width=36, command=lambda: submit())
     sub_btn.place(x=8, y=70)
+
+    seconds = temp
 
     def submit():
         nonlocal time_elapsed
