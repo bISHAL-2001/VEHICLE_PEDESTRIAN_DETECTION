@@ -26,7 +26,6 @@ def input_window(seconds):
             hours = minutes // 60
             minutes = minutes % 60
 
-    print(f"{hours}:{minutes}:{seconds}")
     root = tk.Tk()
     root.title("Time Input")
     root.geometry("280x110")
@@ -64,12 +63,14 @@ def input_window(seconds):
 
     seconds = temp
 
+    # For submit button action
     def submit():
         nonlocal time_elapsed
         time_1 = time_var.get()
         unit = clicked.get()
         time_var.set("")
 
+        # To convert time elapsed to secs & checking if the time is in int and the limit is within the time of the video
         if time_1 != "" and "1" <= time_1[0] <= "9" and unit != "unit" and int(time_1) <= seconds:
             time_elapsed = int(time_1)
             if unit == "secs":
@@ -81,6 +82,7 @@ def input_window(seconds):
             root.destroy()
     root.mainloop()
 
+    # Limiting the calculation time for frames of at least 1 second
     if time_elapsed == 0:
         exit(1)
     return time_elapsed
@@ -120,7 +122,6 @@ def select_video_path():
 
         # If the file selected is of the video types defined
         if ".mp4" in filename or ".avi" in filename or ".mkv" in filename or ".mov" in filename:
-            print(filename)
             messagebox.showinfo('Selected File', f"{filename}")  # shows the selected file path
         root.destroy()
 
@@ -141,7 +142,6 @@ def select_video_path():
 
     # # If the file selected file is of the defined video type return the file path
     elif filename[-3:] == "mp4" or filename[-3:] == "mov" or filename[-3:] == "mkv" or filename[-3:] == "avi":
-        print(filename[-3:])
         return filename
 
     # If a wrong files is selected then close the application with a File format error
@@ -151,7 +151,6 @@ def select_video_path():
         messagebox.showerror("File Type Error", "ACCEPTED CODECS : mp4, mov, mkv, avi")
         w.destroy()
         exit(1)
-    # return filename
 
 
 def main():

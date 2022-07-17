@@ -26,7 +26,8 @@ class EuclideanDistTracker:
 
                 if dist < 25:
                     self.center_points[ID] = (cx, cy)
-                    print(self.center_points)
+                    # print the centroids
+                    # print(self.center_points)
                     objects_bbs_ids.append([x, y, w, h, ID])
                     same_object_detected = True
                     break
